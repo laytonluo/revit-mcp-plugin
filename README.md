@@ -1,4 +1,15 @@
-# revit-mcp-plugin
+# revit-mcp-plugin🔴
+
+> [!WARNING]
+> Deprecation notice, this repo is being archived in favour of the mono repo approch for the mcp https://github.com/mcp-servers-for-revit/mcp-servers-for-revit
+> Simpler CI, less confusion for noobs, npm package and simpler install
+
+
+---
+---
+
+
+
 
 English | [简体中文](README_zh.md)
 
