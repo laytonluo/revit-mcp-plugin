@@ -4,6 +4,9 @@
 > Deprecation notice, this repo is being archived in favour of the mono repo approch for the mcp https://github.com/mcp-servers-for-revit/mcp-servers-for-revit
 > Simpler CI, less confusion for noobs, npm package and simpler install
 
+> [!NOTE]
+> This fork continues on top of the archived upstream repo (which no longer accepts pull requests) purely to add one small feature: the Ribbon button now shows whether the MCP server is running. The large icon switches between an ON and OFF state when you click **Revit MCP Switch**, and hovering it shows the listening port. Everything else is unchanged from upstream — all credit for the original plugin goes to the [revit-mcp](https://github.com/mcp-servers-for-revit) authors. Released under the same MIT license as upstream.
+
 
 ---
 ---
