@@ -9,16 +9,18 @@ namespace revit_mcp_plugin.Core
 {
     public class Application : IExternalApplication
     {
+        public static PushButton ToggleButton { get; private set; }
+
         public Result OnStartup(UIControlledApplication application)
         {
             RibbonPanel mcpPanel = application.CreateRibbonPanel("Revit MCP Plugin");
 
             PushButtonData pushButtonData = new PushButtonData("ID_EXCMD_TOGGLE_REVIT_MCP", "Revit MCP\r\n Switch",
                 Assembly.GetExecutingAssembly().Location, "revit_mcp_plugin.Core.MCPServiceConnection");
-            pushButtonData.ToolTip = "Open / Close mcp server";
+            pushButtonData.ToolTip = $"MCP Server: Off\r\nClick to start (port {SocketService.Instance.Port})";
             pushButtonData.Image = new BitmapImage(new Uri("/revit-mcp-plugin;component/Core/Ressources/icon-16.png", UriKind.RelativeOrAbsolute));
-            pushButtonData.LargeImage = new BitmapImage(new Uri("/revit-mcp-plugin;component/Core/Ressources/icon-32.png", UriKind.RelativeOrAbsolute));
-            mcpPanel.AddItem(pushButtonData);
+            pushButtonData.LargeImage = new BitmapImage(new Uri("/revit-mcp-plugin;component/Core/Ressources/icon-32-off.png", UriKind.RelativeOrAbsolute));
+            ToggleButton = mcpPanel.AddItem(pushButtonData) as PushButton;
 
             PushButtonData mcp_settings_pushButtonData = new PushButtonData("ID_EXCMD_MCP_SETTINGS", "Settings",
                 Assembly.GetExecutingAssembly().Location, "revit_mcp_plugin.Core.Settings");

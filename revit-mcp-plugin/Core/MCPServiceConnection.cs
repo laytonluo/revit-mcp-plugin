@@ -2,6 +2,7 @@
 using Autodesk.Revit.DB;
 using Autodesk.Revit.UI;
 using System;
+using System.Windows.Media.Imaging;
 
 namespace revit_mcp_plugin.Core
 {
@@ -28,12 +29,32 @@ namespace revit_mcp_plugin.Core
                     TaskDialog.Show("revitMCP", "Open Server");
                 }
 
+                UpdateButtonState(service);
+
                 return Result.Succeeded;
             }
             catch (Exception ex)
             {
                 message = ex.Message;
                 return Result.Failed;
+            }
+        }
+
+        private void UpdateButtonState(SocketService service)
+        {
+            PushButton button = Application.ToggleButton;
+            if (button == null)
+                return;
+
+            if (service.IsRunning)
+            {
+                button.LargeImage = new BitmapImage(new Uri("/revit-mcp-plugin;component/Core/Ressources/icon-32-on.png", UriKind.RelativeOrAbsolute));
+                button.ToolTip = $"MCP Server: On\r\nListening on port {service.Port}\r\nClick to stop";
+            }
+            else
+            {
+                button.LargeImage = new BitmapImage(new Uri("/revit-mcp-plugin;component/Core/Ressources/icon-32-off.png", UriKind.RelativeOrAbsolute));
+                button.ToolTip = $"MCP Server: Off\r\nClick to start (port {service.Port})";
             }
         }
     }
